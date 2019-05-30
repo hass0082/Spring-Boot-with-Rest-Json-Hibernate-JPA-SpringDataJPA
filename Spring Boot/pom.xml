@@ -8,10 +8,10 @@
 		<version>2.1.5.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.spring.boot</groupId>
-	<artifactId>Spring_Boot</artifactId>
+	<groupId>com.example</groupId>
+	<artifactId>Spring_boot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Spring Boot</name>
+	<name>Spring_boot</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -21,7 +21,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
