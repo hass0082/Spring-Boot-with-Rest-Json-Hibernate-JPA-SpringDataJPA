@@ -13,36 +13,32 @@ import com.spring.boot.learn.SpringBootLearn.entity.Employee;
 
 public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 
-	//Define field for EntityManager  //Replacement of sessionFactory
-	
-	private EntityManager obj;
-	
-	
-	@Autowired
-	public EmployeeDAOHibernateImpl(EntityManager theEntity)
-	{
-		obj=theEntity;
-	}
-	
-	
-	
-	@Override
-	@Transactional
-	public List<Employee> findAll() {
-	
-		//get the current hibernate session
-		Session currentSession=obj.unwrap(Session.class);
+		// define field for entitymanager	
+		private EntityManager entityManager;
+			
+		// set up constructor injection
+		@Autowired
+		public EmployeeDAOHibernateImpl(EntityManager theEntityManager) {
+			entityManager = theEntityManager;
+		}
 		
-		//Create a query
-		Query <Employee> theQuery=
+		
+		@Override
+		public List<Employee> findAll() {
+
+			// get the current hibernate session
+			Session currentSession = entityManager.unwrap(Session.class);
+			
+			// create a query
+			Query<Employee> theQuery =
 					currentSession.createQuery("from Employee", Employee.class);
-		
-		//execute
-		List<Employee> employees=theQuery.getResultList();
-		
-		//return the results
-		
-		return employees;
-	}
+			
+			// execute query and get result list
+			List<Employee> employees = theQuery.getResultList();
+			
+			// return the results		
+			return employees;
+		}
+
 
 }

@@ -18,9 +18,9 @@ public class SpringRestController {
 	
 	//inject employee dao
 	@Autowired
-	public SpringRestController(EmployeeDAO employeeDAO)
+	public SpringRestController(EmployeeDAO employe)
 	{
-		employeeDAO=employeeDAO;
+		employeeDAO=employe;
 	}
 	
 	@GetMapping("/employees")
