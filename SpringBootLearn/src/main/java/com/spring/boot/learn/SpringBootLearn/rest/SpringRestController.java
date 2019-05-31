@@ -1,12 +1,36 @@
 package com.spring.boot.learn.SpringBootLearn.rest;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import com.spring.boot.learn.SpringBootLearn.dao.EmployeeDAO;
+import com.spring.boot.learn.SpringBootLearn.entity.Employee;
+
+@RestController("/api")
 public class SpringRestController {
 
+	private EmployeeDAO employeeDAO;
+	
+	
+	//inject employee dao
+	@Autowired
+	public SpringRestController(EmployeeDAO employeeDAO)
+	{
+		employeeDAO=employeeDAO;
+	}
+	
+	@GetMapping("/employees")
+	public List<Employee> findAll()
+	{
+		return employeeDAO.findAll();
+	}
+	
+
+	
 	
 	//Injecting properties 
 	
