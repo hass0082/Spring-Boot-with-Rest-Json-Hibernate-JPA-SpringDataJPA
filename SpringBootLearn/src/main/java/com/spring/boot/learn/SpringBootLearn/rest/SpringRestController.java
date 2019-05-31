@@ -5,28 +5,44 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.boot.learn.SpringBootLearn.dao.EmployeeDAO;
 import com.spring.boot.learn.SpringBootLearn.entity.Employee;
+import com.spring.boot.learn.SpringBootLearn.service.EmployeeService;
 
 @RestController
 public class SpringRestController {
 
-	private EmployeeDAO employeeDAO;
+	private EmployeeService employeeService;
 	
 	
 	//inject employee dao
 	@Autowired
-	public SpringRestController(EmployeeDAO employe)
+	public SpringRestController(EmployeeService obj)
 	{
-		employeeDAO=employe;
+		employeeService=obj;
 	}
 	
 	@GetMapping("/employees")
 	public List<Employee> findAll()
 	{
-		return employeeDAO.findAll();
+		return employeeService.findAll();
+	}
+	
+
+	// add mapping for GET /employees/{employeeId}
+	
+	@GetMapping("/employees/{employeeId}")
+	public Employee getEmployee(@PathVariable int employeeId) {
+		
+		Employee theEmployee = employeeService.findById(employeeId);
+		
+		if (theEmployee == null) {
+			throw new RuntimeException("Employee id not found - " + employeeId);
+		}
+		
+		return theEmployee;
 	}
 	
 
