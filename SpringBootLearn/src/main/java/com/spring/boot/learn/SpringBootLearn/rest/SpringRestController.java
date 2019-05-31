@@ -13,6 +13,16 @@ public class SpringRestController {
 	@Value("${coach.name}")
 	private String coach;
 	
+
+	@Value("${team.name}")
+	private String team;
+	
+	
+	@GetMapping("/teamInfo")
+	public String teamInfo()
+	{
+		return "Coach: "+coach+" Team: "+team;
+	}
 	
 	
 	@GetMapping("/map")
