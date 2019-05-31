@@ -1,5 +1,11 @@
 package com.spring.boot.learn.SpringBootLearn.dao;
 
-public class EmployeeDAO {
+import java.util.List;
 
+import com.spring.boot.learn.SpringBootLearn.entity.Employee;
+
+public interface EmployeeDAO {
+
+	public List<Employee> findAll();
+	
 }
