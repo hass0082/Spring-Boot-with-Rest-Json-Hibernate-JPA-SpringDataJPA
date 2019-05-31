@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.boot.learn.SpringBootLearn.dao.EmployeeDAO;
 import com.spring.boot.learn.SpringBootLearn.entity.Employee;
 
-@RestController("/api")
+@RestController
 public class SpringRestController {
 
 	private EmployeeDAO employeeDAO;

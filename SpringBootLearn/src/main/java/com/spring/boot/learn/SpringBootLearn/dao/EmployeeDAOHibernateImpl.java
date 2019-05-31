@@ -7,10 +7,11 @@ import javax.persistence.EntityManager;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Repository;
 
 import com.spring.boot.learn.SpringBootLearn.entity.Employee;
 
+@Repository
 public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 
 		// define field for entitymanager	
