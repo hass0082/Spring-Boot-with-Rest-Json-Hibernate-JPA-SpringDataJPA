@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.boot.learn.SpringBootLearn.entity.Employee;
@@ -45,6 +48,31 @@ public class SpringRestController {
 		return theEmployee;
 	}
 	
+	// add mapping for POST /employees - add new employee
+	
+		@PostMapping("/employees")
+		public Employee addEmployee(@RequestBody Employee theEmployee) {
+			
+			// also just in case they pass an id in JSON ... set id to 0
+			// this is to force a save of new item ... instead of update
+			
+			theEmployee.setId(0);
+			
+			employeeService.save(theEmployee);
+			
+			return theEmployee;
+		}
+		
+		// add mapping for PUT /employees - update existing employee
+		
+		@PutMapping("/employees")
+		public Employee updateEmployee(@RequestBody Employee theEmployee) {
+			
+			employeeService.save(theEmployee);
+			
+			return theEmployee;
+		}
+		
 
 	
 	
