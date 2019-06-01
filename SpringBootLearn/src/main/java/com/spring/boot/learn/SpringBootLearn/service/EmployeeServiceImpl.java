@@ -3,6 +3,7 @@ package com.spring.boot.learn.SpringBootLearn.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +18,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	//inject employee dao
 	@Autowired
-	public EmployeeServiceImpl(EmployeeDAO employe)
+	public EmployeeServiceImpl(@Qualifier("employeeDAO_JPA_Implt") EmployeeDAO employe)
 	{
 		employeeDAO=employe;
 	}
