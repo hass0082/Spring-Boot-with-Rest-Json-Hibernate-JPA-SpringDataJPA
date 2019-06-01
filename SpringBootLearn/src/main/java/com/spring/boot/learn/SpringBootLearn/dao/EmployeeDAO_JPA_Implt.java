@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -41,21 +40,35 @@ public class EmployeeDAO_JPA_Implt implements EmployeeDAO {
 
 		@Override
 		public Employee findById(int theId) {
-			// TODO Auto-generated method stub
-			return null;
+		
+			// get the employee    JPA method is find()
+			Employee theEmployee =
+					entityManager.find(Employee.class, theId);
+			
+			// return the employee
+			return theEmployee;
 		}
 
 
 		@Override
 		public void save(Employee theEmployee) {
-			// TODO Auto-generated method stub
-			
+		
+			Employee deEmployee =
+					entityManager.merge(theEmployee);
+				
+			theEmployee.setId(deEmployee.getId());
 		}
 
 
 		@Override
 		public void deleteById(int theId) {
-			// TODO Auto-generated method stub
+
+			// delete object with primary key
+			Query theQuery = 
+					(Query) entityManager.createQuery("delete from Employee where id=:employeeId");
+			theQuery.setParameter("employeeId", theId);
+			
+			theQuery.executeUpdate();
 			
 		}
 

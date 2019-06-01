@@ -17,7 +17,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	
 	//inject employee dao
-	@Autowired
+	@Autowired   //Adding bean id @Qualifier
 	public EmployeeServiceImpl(@Qualifier("employeeDAO_JPA_Implt") EmployeeDAO employe)
 	{
 		employeeDAO=employe;
